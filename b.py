@@ -8,14 +8,15 @@ import numpy
 from sklearn.neural_network import MLPClassifier
 import joblib
 
+path = os.getcwd()
 digits = []
 lables = []
 basewide = 50
 for index in range(0,11):
-    os.chdir('C:/Users/ericd/PycharmProjects/pythonProject1/data/{}'.format(index))
+    os.chdir(path + '/data/{}'.format(index))
     print(os.getcwd())
     #print(os.listdir())
-    for counter in range(0,50):
+    for counter in range(0,101):
         image = Image.open('{}.jpg'.format(counter))
         img = image.resize((19,15), PIL.Image.Resampling.LANCZOS)
         digits.append([pixel for pixel in iter(img.getdata())])
@@ -33,5 +34,5 @@ mlp.fit(x_scalar,lables)
 predicted = mlp.predict(x_scalar)
 target = numpy.array(lables)
 print('模型得分:{:.2f}'.format(mlp.score(x_scalar,target)))
-os.chdir("C:/Users/ericd/PycharmProjects/pythonProject1")
+os.chdir("path")
 joblib.dump(mlp, 'kaptcha.pkl')

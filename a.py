@@ -5,11 +5,12 @@ import os
 import shutil
 import cv2
 from PIL import Image
-from matplotlib import pyplot as plt
 
 index = 0
+path = os.getcwd()
+os.chdir(path + '/' + 'data_unpro')
 number = 0
-for index in range(1):
+for index in range(500):
     with open('kaptcha.jpg', 'wb') as file:
         res = requests.get('https://ap.ceec.edu.tw/RegInfo/Account/CaptchaImage', verify = True)
         file.write(res.content)
